@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>王叶健的圣诞祝福</title>
+    <!-- 引入Font Awesome图标（更多圣诞元素） -->
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* 全局样式重置 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* 页面全局背景与布局 */
+        body {
+            width: 100vw;
+            height: 100vh;
+            /* 更细腻的圣诞渐变背景 */
+            background: linear-gradient(135deg, #0b132b, #6b0f1a, #c81d25, #f37f1b, #ffd23f);
+            background-attachment: fixed;
+            background-size: 200% 200%;
+            animation: bgMove 15s ease infinite alternate;
+            overflow: hidden;
+            font-family: "Microsoft YaHei", "SimHei", sans-serif;
+            position: relative;
+        }
+
+        /* 背景缓慢移动动画 */
+        @keyframes bgMove {
+            0% {
+                background-position: 0% 0%;
+            }
+            100% {
+                background-position: 100% 100%;
+            }
+        }
+
+        /* 动态雪花样式（多种大小+透明度） */
+        .snowflake {
+            position: absolute;
+            top: -10px;
+            color: #ffffff;
+            animation: snowfall linear infinite;
+            z-index: 1;
+            pointer-events: none; /* 不遮挡按钮点击 */
+        }
+
+        /* 雪花飘落动画 */
+        @keyframes snowfall {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* 圣诞固定装饰通用样式 */
+        .christmas-decoration {
+            position: absolute;
+            z-index: 1;
+            pointer-events: none;
+            filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.8));
+        }
+
+        /* 左侧立体圣诞树（带星星+彩球） */
+        .christmas-tree {
+            top: 50%;
+            left: 50px;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .tree-top {
+            font-size: 3rem;
+            color: #ffd700;
+            animation: starRotate 8s linear infinite;
+            margin-bottom: -10px;
+        }
+
+        .tree-canopy {
+            font-size: 10rem;
+            color: #1a5f00;
+            animation: treeSway 4s ease-in-out infinite alternate;
+        }
+
+        .tree-trunk {
+            font-size: 2rem;
+            color: #8b4513;
+            margin-top: -20px;
+        }
+
+        .tree-ball1 {
+            position: absolute;
+            top: 30%;
+            left: -20px;
+            font-size: 1.5rem;
+            color: #ff0000;
+            animation: ballBounce 3s ease-in-out infinite alternate;
+        }
+
+        .tree-ball2 {
+            position: absolute;
+            top: 50%;
+            right: -20px;
+            font-size: 1.5rem;
+            color: #0000ff;
+            animation: ballBounce 3s ease-in-out infinite alternate;
+            animation-delay: 0.5s;
+        }
+
+        .tree-ball3 {
+            position: absolute;
+            top: 70%;
+            left: 10px;
+            font-size: 1.5rem;
+            color: #00ff00;
+            animation: ballBounce 3s ease-in-out infinite alternate;
+            animation-delay: 1s;
+        }
+
+        /* 圣诞树相关动画 */
+        @keyframes starRotate {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes treeSway {
+            from {
+                transform: rotate(-3deg);
+            }
+            to {
+                transform: rotate(3deg);
+            }
+        }
+
+        @keyframes ballBounce {
+            from {
+                transform: translateY(0);
+            }
+            to {
+                transform: translateY(-15px);
+            }
+        }
+
+        /* 右侧动态圣诞老人（带挥手动画） */
+        .santa-claus {
+            top: 50%;
+            right: 50px;
+            transform: translateY(-50%);
+            font-size: 8rem;
+            color: #ffffff;
+            animation: santaWave 5s ease-in-out infinite alternate;
+        }
+
+        @keyframes santaWave {
+            0% {
+                transform: translateY(-50%) rotate(0deg) scale(1);
+            }
+            50% {
+                transform: translateY(-50%) rotate(10deg) scale(1.05);
+            }
+            100% {
+                transform: translateY(-50%) rotate(-10deg) scale(1);
+            }
+        }
+
+        /* 顶部装饰（圣诞帽+苹果+冬青） */
+        .christmas-hat1 {
+            top: 20px;
+            left: 15%;
+            font-size: 3.5rem;
+            color: #ff0000;
+            animation: hatFloat 6s ease-in-out infinite alternate;
+        }
+
+        .christmas-hat2 {
+            top: 30px;
+            right: 15%;
+            font-size: 3rem;
+            color: #c81d25;
+            animation: hatFloat 7s ease-in-out infinite alternate;
+            animation-delay: 1s;
+        }
+
+        .christmas-apple1 {
+            top: 80px;
+            left: 25%;
+            font-size: 2.5rem;
+            color: #d62828;
+            animation: appleFloat 5s ease-in-out infinite alternate;
+        }
+
+        .christmas-apple2 {
+            top: 100px;
+            right: 25%;
+            font-size: 2.5rem;
+            color: #9a031e;
+            animation: appleFloat 6s ease-in-out infinite alternate;
+            animation-delay: 0.8s;
+        }
+
+        .christmas-holly1 {
+            top: 50px;
+            left: 40%;
+            font-size: 2rem;
+            color: #00a82d;
+            animation: hollySway 4s ease-in-out infinite alternate;
+        }
+
+        .christmas-holly2 {
+            top: 60px;
+            right: 40%;
+            font-size: 2rem;
+            color: #00791e;
+            animation: hollySway 4s ease-in-out infinite alternate;
+            animation-delay: 0.6s;
+        }
+
+        /* 底部装饰（礼物+拐杖糖+铃铛+袜子） */
+        .christmas-gift1 {
+            bottom: 30px;
+            left: 20%;
+            font-size: 3.5rem;
+            color: #ffd700;
+            animation: giftBounce 4s ease-in-out infinite alternate;
+        }
+
+        .christmas-gift2 {
+            bottom: 50px;
+            left: 35%;
+            font-size: 3rem;
+            color: #ff69b4;
+            animation: giftBounce 5s ease-in-out infinite alternate;
+            animation-delay: 0.5s;
+        }
+
+        .christmas-candy1 {
+            bottom: 40px;
+            right: 35%;
+            font-size: 2.5rem;
+            color: #ff0000;
+            animation: candyRotate 6s linear infinite;
+        }
+
+        .christmas-candy2 {
+            bottom: 60px;
+            right: 20%;
+            font-size: 2.5rem;
+            color: #ffffff;
+            animation: candyRotate 7s linear infinite;
+            animation-delay: 1s;
+        }
+
+        .christmas-bell1 {
+            bottom: 80px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 2.5rem;
+            color: #ffc107;
+            animation: bellSwing 3s ease-in-out infinite alternate;
+        }
+
+        .christmas-sock1 {
+            bottom: 30px;
+            left: 10%;
+            font-size: 2.5rem;
+            color: #9c27b0;
+            animation: sockFloat 5s ease-in-out infinite alternate;
+        }
+
+        .christmas-sock2 {
+            bottom: 30px;
+            right: 10%;
+            font-size: 2.5rem;
+            color: #e91e63;
+            animation: sockFloat 5s ease-in-out infinite alternate;
+            animation-delay: 0.7s;
+        }
+
+        /* 顶部/底部装饰动画 */
+        @keyframes hatFloat {
+            from {
+                transform: translateY(0) rotate(0deg);
+            }
+            to {
+                transform: translateY(-25px) rotate(5deg);
+            }
+        }
+
+        @keyframes appleFloat {
+            from {
+                transform: translateY(0);
+            }
+            to {
+                transform: translateY(-20px);
+            }
+        }
+
+        @keyframes hollySway {
+            from {
+                transform: rotate(-5deg);
+            }
+            to {
+                transform: rotate(5deg);
+            }
+        }
+
+        @keyframes giftBounce {
+            from {
+                transform: translateY(0);
+            }
+            to {
+                transform: translateY(-18px);
+            }
+        }
+
+        @keyframes candyRotate {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes bellSwing {
+            from {
+                transform: translateX(-50%) rotate(-10deg);
+            }
+            to {
+                transform: translateX(-50%) rotate(10deg);
+            }
+        }
+
+        @keyframes sockFloat {
+            from {
+                transform: translateY(0);
+            }
+            to {
+                transform: translateY(-15px);
+            }
+        }
+
+        /* 页面容器（承载3个界面） */
+        .page-container {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* 单个界面样式 */
+        .page {
+            width: 800px;
+            padding: 60px 40px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            border: 2px solid rgba(255, 255, 255, 0.4);
+            text-align: center;
+            display: none; /* 默认隐藏所有界面 */
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 50px;
+            box-shadow: 0 0 40px rgba(255, 215, 0, 0.6);
+            animation: pageFadeIn 0.8s ease forwards;
+        }
+
+        /* 激活当前界面 */
+        .page.active {
+            display: flex;
+        }
+
+        /* 界面淡入动画 */
+        @keyframes pageFadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        /* 界面文字样式 */
+        .page-text {
+            color: #ffffff;
+            font-size: 2.2rem;
+            line-height: 2;
+            text-shadow: 0 0 10px #ff0, 0 0 20px #ff0, 0 0 30px #ff0, 0 0 40px #ff0;
+            white-space: pre-line; /* 识别\n换行符 */
+        }
+
+        /* 下一页按钮样式 */
+        .next-btn {
+            padding: 18px 45px;
+            background-color: #ff4500;
+            color: #ffffff;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 0 20px rgba(255, 69, 0, 0.6);
+            transition: all 0.3s ease;
+            -webkit-tap-highlight-color: transparent; /* 去除手机点击按钮的高亮背景 */
+        }
+
+        .next-btn:hover {
+            background-color: #ff6347;
+            box-shadow: 0 0 30px rgba(255, 69, 0, 0.9);
+            transform: translateY(-5px);
+        }
+
+        .next-btn:active {
+            transform: translateY(2px);
+        }
+
+        /* 响应式适配（手机端） */
+        @media (max-width: 768px) {
+            .page {
+                width: 90%;
+                padding: 40px 20px;
+            }
+            .page-text {
+                font-size: 1.5rem;
+            }
+            .next-btn {
+                padding: 15px 35px;
+                font-size: 1.2rem;
+            }
+            /* 移动端装饰缩放 */
+            .christmas-tree .tree-canopy {
+                font-size: 6rem;
+            }
+            .christmas-tree .tree-top {
+                font-size: 2rem;
+            }
+            .santa-claus {
+                font-size: 5rem;
+                right: 20px;
+            }
+            .christmas-hat1, .christmas-hat2 {
+                font-size: 2.5rem;
+            }
+            .christmas-gift1, .christmas-gift2 {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 雪花容器（动态生成） -->
+    <div class="snow-container"></div>
+
+    <!-- 圣诞装饰：左侧立体圣诞树（带星星+彩球） -->
+    <div class="christmas-decoration christmas-tree">
+        <div class="tree-top"><i class="fas fa-star"></i></div>
+        <div class="tree-canopy"><i class="fas fa-tree"></i></div>
+        <div class="tree-trunk"><i class="fas fa-square"></i></div>
+        <div class="tree-ball1"><i class="fas fa-circle"></i></div>
+        <div class="tree-ball2"><i class="fas fa-circle"></i></div>
+        <div class="tree-ball3"><i class="fas fa-circle"></i></div>
+    </div>
+
+    <!-- 圣诞装饰：右侧动态圣诞老人 -->
+    <div class="christmas-decoration santa-claus">
+        <i class="fas fa-santa-claus"></i>
+    </div>
+
+    <!-- 圣诞装饰：顶部（圣诞帽+苹果+冬青） -->
+    <div class="christmas-decoration christmas-hat1">
+        <i class="fas fa-hat-wizard"></i>
+    </div>
+    <div class="christmas-decoration christmas-hat2">
+        <i class="fas fa-hat-wizard"></i>
+    </div>
+    <div class="christmas-decoration christmas-apple1">
+        <i class="fas fa-apple-whole"></i>
+    </div>
+    <div class="christmas-decoration christmas-apple2">
+        <i class="fas fa-apple-whole"></i>
+    </div>
+    <div class="christmas-decoration christmas-holly1">
+        <i class="fas fa-holly-berry"></i>
+    </div>
+    <div class="christmas-decoration christmas-holly2">
+        <i class="fas fa-holly-berry"></i>
+    </div>
+
+    <!-- 圣诞装饰：底部（礼物+拐杖糖+铃铛+袜子） -->
+    <div class="christmas-decoration christmas-gift1">
+        <i class="fas fa-gift"></i>
+    </div>
+    <div class="christmas-decoration christmas-gift2">
+        <i class="fas fa-gift"></i>
+    </div>
+    <div class="christmas-decoration christmas-candy1">
+        <i class="fas fa-candy-cane"></i>
+    </div>
+    <div class="christmas-decoration christmas-candy2">
+        <i class="fas fa-candy-cane"></i>
+    </div>
+    <div class="christmas-decoration christmas-bell1">
+        <i class="fas fa-bell"></i>
+    </div>
+    <div class="christmas-decoration christmas-sock1">
+        <i class="fas fa-sock"></i>
+    </div>
+    <div class="christmas-decoration christmas-sock2">
+        <i class="fas fa-sock"></i>
+    </div>
+
+    <!-- 页面容器 -->
+    <div class="page-container">
+        <!-- 第1个界面 -->
+        <div class="page page1 active">
+            <div class="page-text">很高兴认识你！
+我叫王叶健
+我来自人工智能251班</div>
+            <button class="next-btn" id="btn1">
+                <span>下一页</span>
+                <i class="fas fa-arrow-right"></i>
+            </button>
+        </div>
+
+        <!-- 第2个界面 -->
+        <div class="page page2">
+            <div class="page-text">今天是2025年12月25日
+也就是圣诞节哦！</div>
+            <button class="next-btn" id="btn2">
+                <span>下一页</span>
+                <i class="fas fa-arrow-right"></i>
+            </button>
+        </div>
+
+        <!-- 第3个界面 -->
+        <div class="page page3">
+            <div class="page-text">我祝愿大家平安健康！开心快乐！
+也许愿大家的期末考试不挂科！
+希望未来4年我们依然可以做很好很好的朋友！</div>
+        </div>
+    </div>
+
+    <script>
+        // 1. 动态生成多种样式雪花（更丰富）
+        function createSnowflakes() {
+            const snowContainer = document.querySelector('.snow-container');
+            const snowCount = 200; // 增加雪花数量，更浓密
+            const snowIcons = [
+                '<i class="fas fa-snowflake"></i>', 
+                '❄', '❅', '❆', 
+                '<i class="fas fa-snowflake-half"></i>'
+            ]; // 新增雪花样式
+
+            for (let i = 0; i < snowCount; i++) {
+                const snowflake = document.createElement('div');
+                snowflake.classList.add('snowflake');
+                // 随机雪花样式
+                snowflake.innerHTML = snowIcons[Math.floor(Math.random() * snowIcons.length)];
+                // 随机位置、大小、飘落时长
+                snowflake.style.left = Math.random() * 100 + 'vw';
+                const snowSize = Math.random() * 15 + 8;
+                snowflake.style.fontSize = snowSize + 'px';
+                snowflake.style.animationDuration = Math.random() * 20 + 10 + 's';
+                snowflake.style.animationDelay = Math.random() * 15 + 's';
+                snowflake.style.opacity = Math.random() * 0.5 + 0.5; // 随机透明度
+                snowContainer.appendChild(snowflake);
+            }
+        }
+
+        // 2. 页面切换逻辑（完美兼容手机+电脑）
+        // 2. 页面切换逻辑（兼容所有浏览器，包括内置浏览器）
+function initPageSwitch() {
+    const btn1 = document.getElementById('btn1');
+    const btn2 = document.getElementById('btn2');
+    const page1 = document.querySelector('.page1');
+    const page2 = document.querySelector('.page2');
+    const page3 = document.querySelector('.page3');
+
+    // 兼容所有事件类型：点击、触摸、键盘回车
+    function bindAllEvents(btn, fromPage, toPage) {
+        // 点击事件
+        btn.onclick = function() {
+            fromPage.classList.remove('active');
+            toPage.classList.add('active');
+        };
+        // 触摸事件
+        btn.ontouchstart = function(e) {
+            e = e || window.event;
+            e.preventDefault();
+            fromPage.classList.remove('active');
+            toPage.classList.add('active');
+        };
+        // 键盘回车事件（辅助兼容）
+        btn.onkeydown = function(e) {
+            e = e || window.event;
+            if (e.keyCode === 13) {
+                fromPage.classList.remove('active');
+                toPage.classList.add('active');
+            }
+        };
+        // 强制按钮获取焦点
+        btn.tabIndex = 0;
+        btn.focus();
+    }
+
+    bindAllEvents(btn1, page1, page2);
+    bindAllEvents(btn2, page2, page3);
+}
+
+        // 页面加载完成后执行
+        window.onload = function() {
+            createSnowflakes();
+            initPageSwitch();
+        };
+    </script>
+</body>
+</html>
